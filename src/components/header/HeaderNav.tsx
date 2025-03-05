@@ -10,15 +10,13 @@ const HeaderNav = () => {
   const pathName = usePathname();
 
   return (
-    <nav className="flex-1 flex items-center justify-between w-full h-16 bg-background px-4 max-w-[1200px] mx-auto">
-      <div className="flex items-center justify-evenly w-[400px]">
+    <nav className="flex items-center justify-between w-full h-16 max-w-[1248px] px-6 mx-auto bg-transparent">
+      <div className="flex items-center justify-between w-[160px]">
         <Link href="/dashboard">로고</Link>
         <Link href="/dashboard" className={`${pathName === "/dashboard" ? "text-primary" : ""}`}>
           홈
         </Link>
-        <Link href="/">탐색</Link>
         <Link href="/">만들기</Link>
-        <Link href="/">프로필</Link>
       </div>
       <div className="flex items-center relative">
         <div className="relative">
