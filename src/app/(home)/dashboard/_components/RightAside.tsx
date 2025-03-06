@@ -5,32 +5,12 @@ import HashTagCard from "@/app/(home)/dashboard/_components/HashTagCard";
 import PopularDeveloperCard from "@/app/(home)/dashboard/_components/PopularDeveloperCard";
 import RecommandProjectCard from "@/app/(home)/dashboard/_components/RecommandProjectCard";
 import { useMediaQuery } from "@/hooks/useMatchMedia";
+import useScrollVisiblity from "@/hooks/useScrollVisiblity";
 
 export default function RightAside() {
   const [isClient, setIsClient] = useState(false);
   const isDesktop = useMediaQuery("(min-width: 1200px)");
-  const [isVisible, setIsVisible] = useState(true);
-  let lastScrollY = 0;
-  let ticking = false;
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          const scrollY = window.scrollY;
-          setIsVisible(scrollY < lastScrollY || scrollY < 50); // 위로 스크롤하거나, 페이지 상단이면 보이기
-          lastScrollY = scrollY;
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  const isVisible = useScrollVisiblity();
 
   useEffect(() => {
     setIsClient(true);

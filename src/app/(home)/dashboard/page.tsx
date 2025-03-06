@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import { Thread } from "@git-tul-types";
+import { Card } from "@/components/ui/card";
 
 const LeftAside = dynamic(() => import("./_components/LeftAside"));
 const RightAside = dynamic(() => import("./_components/RightAside"));

@@ -19,7 +19,7 @@ export default function RecommandProjectCard() {
   ];
 
   return (
-    <Card className="w-[288px] h-fit">
+    <Card className="min-w-[250px] w-[288px] h-fit">
       <CardHeader>
         <CardTitle className="text-foreground">추천 프로젝트 📕</CardTitle>
       </CardHeader>
