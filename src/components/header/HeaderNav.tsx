@@ -5,18 +5,23 @@ import Link from "next/link";
 import React from "react";
 import { Bell, User, Search } from "lucide-react";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 const HeaderNav = () => {
   const pathName = usePathname();
 
   return (
     <nav className="flex items-center justify-between w-full h-16 max-w-[1248px] px-6 mx-auto bg-transparent">
-      <div className="flex items-center justify-between w-[160px]">
-        <Link href="/dashboard">로고</Link>
+      <div className="flex items-center justify-between gap-8 w-[220px]">
+        <Link href="/dashboard">
+          <Image src="/icons/logo_icon.svg" alt="로고 아이콘" width={42} height={32} />
+        </Link>
         <Link href="/dashboard" className={`${pathName === "/dashboard" ? "text-primary" : ""}`}>
           홈
         </Link>
-        <Link href="/">만들기</Link>
+        <Link href="/post" className={`${pathName === "/post" ? "text-primary" : ""}`}>
+          카드 만들기
+        </Link>
       </div>
       <div className="flex items-center relative">
         <div className="relative">

@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import HeaderNav from "@/components/header/HeaderNav";
 import useScrollVisiblity from "@/hooks/useScrollVisiblity";
 
