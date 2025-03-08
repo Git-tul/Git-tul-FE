@@ -22,7 +22,7 @@ export default function PopularDeveloperCard() {
   ];
 
   return (
-    <Card className="min-w-[250px] w-[288px] h-fit">
+    <Card className="w-full h-fit">
       <CardHeader>
         <CardTitle className="text-foreground">인기 개발자 🖥️</CardTitle>
       </CardHeader>
