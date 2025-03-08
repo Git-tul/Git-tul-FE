@@ -24,14 +24,16 @@ const HeaderNav = () => {
         </Link>
       </div>
       <div className="flex items-center relative">
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-card-foreground/70" size={18} />
-          <Input
-            type="text"
-            placeholder="레포지토리 또는 해시태그 검색"
-            className="pl-10 py-2 w-[256px] transition-all duration-300 focus:w-[400px]"
-          />
-        </div>
+        {pathName === "/dashboard" && (
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-card-foreground/70" size={18} />
+            <Input
+              type="text"
+              placeholder="레포지토리 또는 해시태그 검색"
+              className="pl-10 py-2 w-[256px] transition-all duration-300 focus:w-[400px]"
+            />
+          </div>
+        )}
         <div className="flex space-x-8 ml-8">
           <button role="button" className="hover:cursor-pointer">
             <Bell className="hover:stroke-primary" />
