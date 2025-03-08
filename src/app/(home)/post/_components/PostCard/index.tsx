@@ -36,28 +36,26 @@ export default function PostCard() {
     <FormProvider {...postCardForm}>
       <Dialog>
         <Card className="w-full h-fit min-w-[700px]">
-          <Form {...postCardForm}>
-            <form onSubmit={postCardForm.handleSubmit(handleSubmitPost)} className=" flex flex-col gap-10">
-              <PostCardHeader control={postCardForm.control} />
-              <PostCardContent control={postCardForm.control} />
-              <CardFooter>
-                <div className="ml-auto flex gap-2">
-                  <DialogTrigger asChild>
-                    <Button
-                      type="button"
-                      variant="ghost"
-                      className="border-1 p-5 hover:bg-muted-foreground hover:text-white"
-                    >
-                      미리보기
-                    </Button>
-                  </DialogTrigger>
-                  <Button type="submit" variant="default" className="border-1 p-5 bg-primary hover:bg-primary/90">
-                    발행하기
+          <form onSubmit={postCardForm.handleSubmit(handleSubmitPost)} className=" flex flex-col gap-10">
+            <PostCardHeader control={postCardForm.control} />
+            <PostCardContent control={postCardForm.control} />
+            <CardFooter>
+              <div className="ml-auto flex gap-2">
+                <DialogTrigger asChild>
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    className="border-1 p-5 hover:bg-muted-foreground hover:text-white"
+                  >
+                    미리보기
                   </Button>
-                </div>
-              </CardFooter>
-            </form>
-          </Form>
+                </DialogTrigger>
+                <Button type="submit" variant="default" className="border-1 p-5 bg-primary hover:bg-primary/90">
+                  발행하기
+                </Button>
+              </div>
+            </CardFooter>
+          </form>
         </Card>
         <PreviewCard />
       </Dialog>
