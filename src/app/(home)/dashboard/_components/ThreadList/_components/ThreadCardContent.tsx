@@ -1,6 +1,6 @@
 import { CardContent } from "@/components/ui/card";
 import { Thread } from "@git-tul-types";
-import Tag from "@/app/(home)/dashboard/_components/ThreadCard/_components/Tag";
+import Tag from "@/app/(home)/dashboard/_components/ThreadList/_components/Tag";
 import Image from "next/image";
 
 export default function ThreadCardContent({ title, description, starCount, forkCount, tags }: Thread) {
