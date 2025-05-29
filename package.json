@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
+    "build:no-lint": "NEXT_DISABLE_ESLINT=1 next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -20,18 +21,26 @@
     "lucide-react": "^0.477.0",
     "next": "15.2.0",
     "next-themes": "^0.4.4",
+    "nookies": "^2.5.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.54.2",
+    "react-markdown": "^10.1.0",
+    "rehype-raw": "^7.0.0",
+    "rehype-sanitize": "^6.0.0",
+    "remark-gfm": "^4.0.1",
     "tailwind-merge": "^3.0.2",
     "tailwindcss-animate": "^1.0.7",
     "usehooks-ts": "^3.1.1",
-    "zod": "^3.24.2"
+    "zod": "^3.24.2",
+    "zustand": "^5.0.5"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "@tailwindcss/typography": "^0.5.16",
     "@types/node": "^20",
+    "@types/nookies": "^2.0.3",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",

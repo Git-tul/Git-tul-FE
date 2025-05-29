@@ -1,0 +1,1700 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "깃털 API",
+        "description": "깃털 API 문서",
+        "version": "0.1"
+    },
+    "servers": [
+        {
+            "url": "http://api.gittul.miensoap.me",
+            "description": "Generated server url"
+        }
+    ],
+    "paths": {
+        "/users/uninterest": {
+            "post": {
+                "tags": [
+                    "user-controller"
+                ],
+                "operationId": "uninterested",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/User"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/users/unfollow": {
+            "post": {
+                "tags": [
+                    "user-controller"
+                ],
+                "operationId": "unfollow",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/User"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "integer",
+                                "format": "int64"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/users/interest": {
+            "post": {
+                "tags": [
+                    "user-controller"
+                ],
+                "operationId": "interest",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/User"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/users/follow": {
+            "post": {
+                "tags": [
+                    "user-controller"
+                ],
+                "operationId": "follow",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/User"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "integer",
+                                "format": "int64"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/posts": {
+            "get": {
+                "tags": [
+                    "post-controller"
+                ],
+                "operationId": "getAllPosts",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/User"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/PageQuery"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/PostFeedResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "post-controller"
+                ],
+                "operationId": "createPost",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/User"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/NormalPostCreateRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PostDetailResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/posts/{postId}/comments": {
+            "post": {
+                "tags": [
+                    "comment-controller"
+                ],
+                "operationId": "createComment",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/User"
+                        }
+                    },
+                    {
+                        "name": "postId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CommentCreateRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CommentResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/posts/{postId}/comments/{id}/like": {
+            "post": {
+                "tags": [
+                    "comment-controller"
+                ],
+                "operationId": "likeComment",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/User"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "comment-controller"
+                ],
+                "operationId": "unLikeComment",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/User"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/posts/{id}/unlike": {
+            "post": {
+                "tags": [
+                    "post-social-controller"
+                ],
+                "operationId": "unLikePost",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/User"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/posts/{id}/unbookmark": {
+            "post": {
+                "tags": [
+                    "post-social-controller"
+                ],
+                "operationId": "removeBookmark",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/User"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/posts/{id}/like": {
+            "post": {
+                "tags": [
+                    "post-social-controller"
+                ],
+                "operationId": "likePost",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/User"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/posts/{id}/bookmark": {
+            "post": {
+                "tags": [
+                    "post-social-controller"
+                ],
+                "operationId": "addBookmark",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/User"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/auth/signup": {
+            "post": {
+                "tags": [
+                    "auth-controller"
+                ],
+                "operationId": "signup",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SignupRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/oauth/{provider}": {
+            "post": {
+                "tags": [
+                    "auth-controller"
+                ],
+                "operationId": "loginWithOauth",
+                "parameters": [
+                    {
+                        "name": "provider",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "code",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/LoginSuccessResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/login": {
+            "post": {
+                "tags": [
+                    "auth-controller"
+                ],
+                "operationId": "login",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LoginRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/LoginSuccessResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/me": {
+            "get": {
+                "tags": [
+                    "user-controller"
+                ],
+                "operationId": "me",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserDetailResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/posts/{id}": {
+            "get": {
+                "tags": [
+                    "post-controller"
+                ],
+                "operationId": "getPost",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/User"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PostDetailResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "post-controller"
+                ],
+                "operationId": "deletePost",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/User"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/posts/following": {
+            "get": {
+                "tags": [
+                    "post-social-controller"
+                ],
+                "operationId": "getFollowingPosts",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/User"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/PageQuery"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/PostFeedResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/posts/bookmark": {
+            "get": {
+                "tags": [
+                    "post-social-controller"
+                ],
+                "operationId": "getBookmarkedPosts",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/User"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/PageQuery"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/PostFeedResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/github/trending/daily/history": {
+            "get": {
+                "tags": [
+                    "github-controller"
+                ],
+                "operationId": "getDailyTrendingRepositoriesHistory",
+                "parameters": [
+                    {
+                        "name": "admin",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/User"
+                        }
+                    },
+                    {
+                        "name": "start",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "date"
+                        }
+                    },
+                    {
+                        "name": "end",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "date"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/GenerateTrendingRepoResult"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/github/trending/daily/generate": {
+            "get": {
+                "tags": [
+                    "github-controller"
+                ],
+                "operationId": "getDailyTrendingRepositories",
+                "parameters": [
+                    {
+                        "name": "admin",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/posts/{postId}/comments/{id}": {
+            "delete": {
+                "tags": [
+                    "comment-controller"
+                ],
+                "operationId": "deleteComment",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/User"
+                        }
+                    },
+                    {
+                        "name": "postId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Bookmark": {
+                "type": "object",
+                "properties": {
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "bookmarkId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "user": {
+                        "$ref": "#/components/schemas/User"
+                    },
+                    "post": {
+                        "$ref": "#/components/schemas/Post"
+                    }
+                }
+            },
+            "Comment": {
+                "type": "object",
+                "properties": {
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "commentId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "post": {
+                        "$ref": "#/components/schemas/Post"
+                    },
+                    "user": {
+                        "$ref": "#/components/schemas/User"
+                    },
+                    "content": {
+                        "type": "string"
+                    },
+                    "imageUrl": {
+                        "type": "string"
+                    },
+                    "likes": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/UserLikeComment"
+                        }
+                    },
+                    "likeCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                }
+            },
+            "GitHubRepository": {
+                "type": "object",
+                "properties": {
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "repoId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "repoUrl": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "starCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "forkCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                }
+            },
+            "OauthInfo": {
+                "type": "object",
+                "properties": {
+                    "oauthProvider": {
+                        "type": "string"
+                    },
+                    "oauthId": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Password": {
+                "type": "object"
+            },
+            "Post": {
+                "type": "object",
+                "properties": {
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "postId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "user": {
+                        "$ref": "#/components/schemas/User"
+                    },
+                    "repository": {
+                        "$ref": "#/components/schemas/GitHubRepository"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "content": {
+                        "type": "string"
+                    },
+                    "imageUrl": {
+                        "type": "string"
+                    },
+                    "viewCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "comments": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Comment"
+                        }
+                    },
+                    "likes": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/UserLikePost"
+                        }
+                    },
+                    "bookmarks": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Bookmark"
+                        }
+                    },
+                    "postTags": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/PostTag"
+                        }
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Tag"
+                        }
+                    },
+                    "likeCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "commentCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "bookmarkCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "bestComment": {
+                        "$ref": "#/components/schemas/Comment"
+                    }
+                }
+            },
+            "PostTag": {
+                "type": "object",
+                "properties": {
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "postTagId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "post": {
+                        "$ref": "#/components/schemas/Post"
+                    },
+                    "tag": {
+                        "$ref": "#/components/schemas/Tag"
+                    }
+                }
+            },
+            "Tag": {
+                "type": "object",
+                "properties": {
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "tagId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "tagName": {
+                        "type": "string"
+                    }
+                }
+            },
+            "User": {
+                "type": "object",
+                "properties": {
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "userId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "userName": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "profileImage": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "$ref": "#/components/schemas/Password"
+                    },
+                    "oauthInfo": {
+                        "$ref": "#/components/schemas/OauthInfo"
+                    },
+                    "role": {
+                        "type": "string",
+                        "enum": [
+                            "USER",
+                            "ADMIN"
+                        ]
+                    },
+                    "details": {
+                        "$ref": "#/components/schemas/UserDetails"
+                    }
+                }
+            },
+            "UserDetails": {
+                "type": "object",
+                "properties": {
+                    "posts": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Post"
+                        }
+                    },
+                    "comments": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Comment"
+                        }
+                    },
+                    "likedPosts": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/UserLikePost"
+                        },
+                        "uniqueItems": true
+                    },
+                    "likedComments": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/UserLikeComment"
+                        },
+                        "uniqueItems": true
+                    },
+                    "bookmarks": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Bookmark"
+                        }
+                    },
+                    "interests": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/UserInterest"
+                        }
+                    },
+                    "followings": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/UserFollow"
+                        },
+                        "uniqueItems": true
+                    },
+                    "followers": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/UserFollow"
+                        },
+                        "uniqueItems": true
+                    }
+                }
+            },
+            "UserFollow": {
+                "type": "object",
+                "properties": {
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "followId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "follower": {
+                        "$ref": "#/components/schemas/User"
+                    },
+                    "followee": {
+                        "$ref": "#/components/schemas/User"
+                    }
+                }
+            },
+            "UserInterest": {
+                "type": "object",
+                "properties": {
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "interestId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "user": {
+                        "$ref": "#/components/schemas/User"
+                    },
+                    "tag": {
+                        "$ref": "#/components/schemas/Tag"
+                    }
+                }
+            },
+            "UserLikeComment": {
+                "type": "object",
+                "properties": {
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "likeId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "user": {
+                        "$ref": "#/components/schemas/User"
+                    },
+                    "comment": {
+                        "$ref": "#/components/schemas/Comment"
+                    }
+                }
+            },
+            "UserLikePost": {
+                "type": "object",
+                "properties": {
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "likeId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "user": {
+                        "$ref": "#/components/schemas/User"
+                    },
+                    "post": {
+                        "$ref": "#/components/schemas/Post"
+                    }
+                }
+            },
+            "NormalPostCreateRequest": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "minLength": 1
+                    },
+                    "content": {
+                        "type": "string",
+                        "maxLength": 200,
+                        "minLength": 1
+                    },
+                    "image": {
+                        "type": "string"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "required": [
+                    "content",
+                    "tags",
+                    "title"
+                ]
+            },
+            "CommentResponse": {
+                "type": "object",
+                "properties": {
+                    "user": {
+                        "$ref": "#/components/schemas/UserProfileResponse"
+                    },
+                    "content": {
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "type": "string"
+                    },
+                    "updatedAt": {
+                        "type": "string"
+                    },
+                    "likeCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "isLiked": {
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "content",
+                    "createdAt",
+                    "id",
+                    "isLiked",
+                    "likeCount",
+                    "updatedAt"
+                ]
+            },
+            "PostDetailResponse": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "content": {
+                        "type": "string"
+                    },
+                    "image": {
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "type": "string"
+                    },
+                    "updatedAt": {
+                        "type": "string"
+                    },
+                    "writer": {
+                        "$ref": "#/components/schemas/UserProfileResponse"
+                    },
+                    "isFollowed": {
+                        "type": "boolean"
+                    },
+                    "isLiked": {
+                        "type": "boolean"
+                    },
+                    "isBookmarked": {
+                        "type": "boolean"
+                    },
+                    "likeCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "bookmarkCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "viewCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "comments": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/CommentResponse"
+                        }
+                    }
+                },
+                "required": [
+                    "bookmarkCount",
+                    "comments",
+                    "content",
+                    "createdAt",
+                    "id",
+                    "isBookmarked",
+                    "isFollowed",
+                    "isLiked",
+                    "likeCount",
+                    "tags",
+                    "title",
+                    "updatedAt",
+                    "viewCount"
+                ]
+            },
+            "UserProfileResponse": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "nickname": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "profileImage": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "email",
+                    "id",
+                    "nickname"
+                ]
+            },
+            "CommentCreateRequest": {
+                "type": "object",
+                "properties": {
+                    "content": {
+                        "type": "string",
+                        "maxLength": 200,
+                        "minLength": 1
+                    },
+                    "image": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "content"
+                ]
+            },
+            "SignupRequest": {
+                "type": "object",
+                "properties": {
+                    "userName": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    },
+                    "profileImage": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "email",
+                    "password",
+                    "profileImage",
+                    "userName"
+                ]
+            },
+            "LoginSuccessResponse": {
+                "type": "object",
+                "properties": {
+                    "accessToken": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "accessToken"
+                ]
+            },
+            "LoginRequest": {
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "email",
+                    "password"
+                ]
+            },
+            "UserDetailResponse": {
+                "type": "object",
+                "properties": {
+                    "userId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "nickname": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "profileImageUrl": {
+                        "type": "string"
+                    },
+                    "followerCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "followingCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "followings": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/UserProfileResponse"
+                        }
+                    },
+                    "likedCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "interests": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "required": [
+                    "email",
+                    "followerCount",
+                    "followingCount",
+                    "followings",
+                    "interests",
+                    "likedCount",
+                    "nickname",
+                    "userId"
+                ]
+            },
+            "PageQuery": {
+                "type": "object",
+                "properties": {
+                    "page": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "size": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                }
+            },
+            "PostFeedResponse": {
+                "type": "object",
+                "properties": {
+                    "user": {
+                        "$ref": "#/components/schemas/UserProfileResponse"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "image": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "type": "string"
+                    },
+                    "updatedAt": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "starCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "forkCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "viewCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "likeCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "commentCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "bestComment": {
+                        "$ref": "#/components/schemas/CommentResponse"
+                    },
+                    "isLiked": {
+                        "type": "boolean"
+                    },
+                    "isBookmarked": {
+                        "type": "boolean"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "required": [
+                    "commentCount",
+                    "createdAt",
+                    "description",
+                    "forkCount",
+                    "id",
+                    "isBookmarked",
+                    "isLiked",
+                    "likeCount",
+                    "starCount",
+                    "tags",
+                    "title",
+                    "updatedAt",
+                    "user",
+                    "viewCount"
+                ]
+            },
+            "GenerateTrendingRepoResult": {
+                "type": "object",
+                "properties": {
+                    "generatedCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "failedCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "errors": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "results": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/PostFeedResponse"
+                        }
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "required": [
+                    "createdAt",
+                    "errors",
+                    "failedCount",
+                    "generatedCount",
+                    "results"
+                ]
+            }
+        }
+    }
+}
