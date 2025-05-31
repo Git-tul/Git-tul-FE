@@ -24,7 +24,3 @@ const mockThreadData: Thread[] = [
       tags: ["GitHub", "소셜코딩", "개발자커뮤니티", "오픈소스", "Git-tul"],
     },
   ];
-
-
-export const API_URL = 'https://api.gittul.miensoap.me';
-export const AUTH_URL = '/auth';

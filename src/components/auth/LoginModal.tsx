@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -14,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import useAuthStore from "@/store/useAuthStore";
+import { VisuallyHidden } from "@/components/ui/visually-hidden";
 
 interface LoginFormData {
   email: string;
@@ -61,6 +61,9 @@ export function LoginModal({ isOpen, onClose, onOpenSignup }: LoginModalProps) {
     <Dialog open={isOpen} onOpenChange={handleClose}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
+          <VisuallyHidden>
+            <DialogTitle>계정 로그인</DialogTitle>
+          </VisuallyHidden>
           <div className="flex border-b">
             <button
               className="flex-1 py-2 px-4 text-center font-medium border-b-2 border-primary"

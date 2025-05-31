@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { LoginModal } from "./LoginModal";
 import { SignupModal } from "./SignupModal";
 import useAuthStore from "@/store/useAuthStore";
@@ -10,13 +10,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Link from "next/link";
 
 export function AuthController() {
-  const { isLoggedIn, user, logout, checkAuth } = useAuthStore();
+  const { isLoggedIn, user, logout } = useAuthStore();
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignupModal, setShowSignupModal] = useState(false);
-
-  useEffect(() => {
-    checkAuth();
-  }, [checkAuth]);
 
   const handleOpenLogin = () => {
     setShowLoginModal(true);
