@@ -1,9 +1,6 @@
-import Link from "next/link";
+import { redirect } from "next/navigation";
 
 export default function Home() {
-  return (
-    <div>
-      <Link href="/dashboard">대시보드 가기</Link>
-    </div>
-  );
+  // 서버 컴포넌트에서 리다이렉트 수행
+  redirect("/dashboard");
 }
