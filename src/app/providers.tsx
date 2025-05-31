@@ -13,7 +13,11 @@ export function Providers({ children }: ProvidersProps) {
 
   // 앱 로드 시 인증 상태 확인
   useEffect(() => {
-    checkAuth();
+    const initializeApp = async () => {
+      await checkAuth();
+    };
+
+    initializeApp();
   }, [checkAuth]);
 
   return (

@@ -4,14 +4,26 @@ import ThreadCardContent from "@/app/(home)/dashboard/_components/ThreadList/_co
 import ThreadCardFooter from "@/app/(home)/dashboard/_components/ThreadList/_components/ThreadCardFooter";
 import ThreadCardHeader from "@/app/(home)/dashboard/_components/ThreadList/_components/ThreadCardHeader";
 import { Card } from "@/components/ui/card";
-import { Thread } from "@git-tul-types";
+import { Thread } from "@/store/usePostStore";
 
 export default function ThreadCard({ thread }: { thread: Thread }) {
   return (
     <Card className="w-full h-fit max-w-[650px]">
-      <ThreadCardHeader {...thread.user} />
+      <ThreadCardHeader
+        profileImage={thread.user.profileImage}
+        nickname={thread.user.nickname}
+        createdAt={thread.createdAt}
+      />
       <ThreadCardContent {...thread} />
-      <ThreadCardFooter {...thread} profileImage={thread.user.profileImage} />
+      <ThreadCardFooter
+        id={thread.id}
+        likeCount={thread.likeCount}
+        commentCount={thread.commentCount}
+        bestComment={thread.bestComment}
+        profileImage={thread.user.profileImage}
+        isLiked={thread.isLiked}
+        isBookmarked={thread.isBookmarked}
+      />
     </Card>
   );
 }
