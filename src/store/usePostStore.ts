@@ -94,7 +94,9 @@ const usePostStore = create<PostState>((set, get) => ({
       }
 
       const data = await response.json();
+      const size = data.length;
 
+      // Todo. 백엔드 페이징 오류 확인
       // 새로운 데이터에서 중복 ID를 필터링
       const existingIds = new Set(threads.map((thread) => thread.id));
       const uniqueNewThreads = data.filter(
@@ -108,8 +110,7 @@ const usePostStore = create<PostState>((set, get) => ({
             : [...state.threads, ...uniqueNewThreads], // 이후 페이지는 중복 제거 후 추가
         isLoading: false,
         page: state.page + 1,
-        // 새로운 중복 제거된 데이터가 요청한 크기보다 작으면 더 이상 데이터가 없는 것으로 판단
-        hasMore: uniqueNewThreads.length === pageQuery.size,
+        hasMore: size > 0,
       }));
     } catch (error) {
       set({
