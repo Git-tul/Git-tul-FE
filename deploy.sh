@@ -4,7 +4,7 @@
 SERVER_USER="ubuntu"
 SERVER_HOST="146.56.102.130"
 KEY_PATH="$KEYS/Soap_key.pem"  # 환경 변수 $KEYS를 사용하므로 로컬에서 이 변수가 설정되어 있어야 합니다
-REMOTE_DIR="/home/ubuntu/git-tul-fe"
+REMOTE_DIR="/home/ubuntu/gittul/git-tul-fe"
 
 # 색상 설정
 GREEN='\033[0;32m'
