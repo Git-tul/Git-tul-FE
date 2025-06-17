@@ -36,7 +36,10 @@ export default function PostCard() {
     <FormProvider {...postCardForm}>
       <Dialog>
         <Card className="w-full h-fit min-w-[700px]">
-          <form onSubmit={postCardForm.handleSubmit(handleSubmitPost)} className=" flex flex-col gap-10">
+          <form
+            onSubmit={postCardForm.handleSubmit(handleSubmitPost)}
+            className=" flex flex-col gap-10"
+          >
             <PostCardHeader control={postCardForm.control} />
             <PostCardContent control={postCardForm.control} />
             <CardFooter>
@@ -50,7 +53,11 @@ export default function PostCard() {
                     미리보기
                   </Button>
                 </DialogTrigger>
-                <Button type="submit" variant="default" className="border-1 p-5 bg-primary hover:bg-primary/90">
+                <Button
+                  type="submit"
+                  variant="default"
+                  className="border-1 p-5 bg-primary hover:bg-primary/90"
+                >
                   발행하기
                 </Button>
               </div>

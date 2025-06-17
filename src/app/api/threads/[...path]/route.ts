@@ -9,7 +9,7 @@ async function handleRequest(
   return withAuth(async (authToken) => {
     // 경로 파라미터 추출
     const { path } = params;
-    const endpoint = `/posts/${path.join("/")}`;
+    const endpoint = `/threads/${path.join("/")}`;
 
     // 쿼리 파라미터 추출 및 전달
     const url = new URL(request.url);

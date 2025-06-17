@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { withAuth, createApiRequest, handleApiResponse } from "@/lib/api";
 import useAuthStore from "@/store/useAuthStore";
 
-// /api/posts 엔드포인트 (포스트 목록 조회)
+// /api/threads 엔드포인트 (포스트 목록 조회)
 export async function GET(request: NextRequest) {
   return withAuth(async (authToken) => {
     try {
@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
       // API 문서에 따르면 다음 파라미터가 필요함:
       // - user: User 객체 (쿼리 파라미터로 전달)
       // - page: PageQuery 객체 (쿼리 파라미터로 전달)
-      const apiEndpoint = `/posts`;
+      const apiEndpoint = `/threads`;
 
       // 페이지네이션 정보 구성
       const pageQueryParams = new URLSearchParams();

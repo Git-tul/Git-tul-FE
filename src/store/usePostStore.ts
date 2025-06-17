@@ -87,7 +87,7 @@ const usePostStore = create<PostState>((set, get) => ({
       queryParams.append("size", pageQuery.size.toString());
 
       // 실제 API 서버로 요청 (Next.js API 라우트 사용)
-      const response = await fetch(`/api/posts?${queryParams.toString()}`);
+      const response = await fetch(`/api/threads?${queryParams.toString()}`);
 
       if (!response.ok) {
         throw new Error("포스트를 불러오는데 실패했습니다.");
