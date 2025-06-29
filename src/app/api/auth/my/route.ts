@@ -21,9 +21,10 @@ export async function GET() {
     }
 
     // 백엔드 API에서 사용자 정보 가져오기
-    const response = await fetch(`${AUTH_URL}/me`, {
+    const response = await fetch(`${AUTH_URL.replace('/auth', '')}/users/me`, {
       headers: {
         Authorization: `Bearer ${authToken}`,
+        "Content-Type": "application/json",
       },
     });
 
@@ -40,11 +41,12 @@ export async function GET() {
     }
 
     const userData = await response.json();
+    console.log("my API userData:", userData);
 
     // 프론트엔드에서 필요한 형태로 데이터 변환
     return NextResponse.json({
       id: userData.userId,
-      nickname: userData.nickname,
+      nickname: userData.nickname || userData.userName,
       email: userData.email,
       profileImage: userData.profileImageUrl,
     });

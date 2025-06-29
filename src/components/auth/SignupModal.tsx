@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import useAuthStore from "@/store/useAuthStore";
 import { VisuallyHidden } from "@/components/ui/visually-hidden";
+import { GithubLoginButton } from "./GithubLoginButton";
 
 interface SignupFormData {
   userName: string;
@@ -101,6 +102,22 @@ export function SignupModal({
         </DialogHeader>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 py-4">
+          {/* 깃허브 로그인 버튼 */}
+          <div className="space-y-4">
+            <GithubLoginButton />
+            
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <span className="w-full border-t" />
+              </div>
+              <div className="relative flex justify-center text-xs uppercase">
+                <span className="bg-background px-2 text-muted-foreground">
+                  또는 회원가입
+                </span>
+              </div>
+            </div>
+          </div>
+
           <div className="space-y-2">
             <Label htmlFor="userName">닉네임</Label>
             <Input
