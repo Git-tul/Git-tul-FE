@@ -21,16 +21,18 @@ pnpm build
 echo -e "${GREEN}2. 서버에 디렉토리 생성 중...${NC}"
 ssh -i "$KEY_PATH" $SERVER_USER@$SERVER_HOST "mkdir -p $REMOTE_DIR"
 
-# 3. 필요한 파일들을 서버로 복사
-echo -e "${GREEN}3. 파일 전송 중...${NC}"
-scp -i "$KEY_PATH" -r \
-  .next \
-  public \
-  package.json \
-  pnpm-lock.yaml \
-  next.config.ts \
-  ecosystem.config.js \
-  $SERVER_USER@$SERVER_HOST:$REMOTE_DIR/
+# 3. 필요한 파일들을 서버로 복사 (rsync 사용으로 속도 향상)
+echo -e "${GREEN}3. 파일 전송 중 (증분 전송)...${NC}"
+rsync -avz --progress --delete \
+  -e "ssh -i $KEY_PATH" \
+  --include='.next/***' \
+  --include='public/***' \
+  --include='package.json' \
+  --include='pnpm-lock.yaml' \
+  --include='next.config.ts' \
+  --include='ecosystem.config.js' \
+  --exclude='*' \
+  ./ $SERVER_USER@$SERVER_HOST:$REMOTE_DIR/
 
 # 4. 서버에서 의존성 설치 및 PM2로 애플리케이션 실행
 echo -e "${GREEN}4. 서버에서 의존성 설치 및 애플리케이션 시작 중...${NC}"
